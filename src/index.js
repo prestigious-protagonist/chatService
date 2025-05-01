@@ -2,6 +2,7 @@
 const express = require('express');
 const http = require('http');
 const mongoose = require('mongoose');
+const { clerkMiddleware } = require('@clerk/express');
 const { Server } = require('socket.io');
 const Chat = require('./model/chatSchema');
 const cors = require('cors');
@@ -23,6 +24,7 @@ const io = new Server(server, {
 });
 
 // Middleware
+app.use(clerkMiddleware());
 app.use(cors());
 app.use(express.json());
 

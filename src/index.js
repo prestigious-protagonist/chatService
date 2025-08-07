@@ -38,7 +38,7 @@ mongoose.connect(process.env.MONGO_URL, {
   .catch(err => console.error("MongoDB connection error:", err));
 
 // Routes
-app.post('/chat', authValidator, async (req, res) => {
+app.post('/chat', async (req, res) => {
   try {
     const { senderId, receiverId, message } = req.body;
 
@@ -54,7 +54,7 @@ app.post('/chat', authValidator, async (req, res) => {
   }
 });
 
-app.get('/chat/:userId/:otherUserId',authValidator, async (req, res) => {
+app.get('/chat/:userId/:otherUserId', async (req, res) => {
   try {
     const { userId, otherUserId } = req.params;
     const chats = await Chat.find({
